@@ -1,0 +1,48 @@
+<config>
+    <modules>
+        <Dv_Complexworld>
+            <version>0.1.0</version>
+        </Dv_Complexworld>
+    </modules>
+    <frontend>
+        <routers>
+            <complexworld>
+                <use>standard</use>
+                <args>
+                    <module>Dv_Complexworld</module>
+                    <frontName>complexworld</frontName>
+                </args>
+            </complexworld>
+        </routers>
+    </frontend>
+    <global>
+        <models>
+            <complexworld>
+                <class>Dv_Complexworld_Model</class>
+                <!--
+                need to create our own resource, can't just
+                use core_resource
+                -->
+                <resourceModel>complexworld_resource</resourceModel>
+            </complexworld>
+
+            <complexworld_resource>
+                <class>Dv_Complexworld_Model_Resource</class>
+                <entities>
+                    <eavblogpost>
+                        <table>eavblog_posts</table>
+                    </eavblogpost>
+                </entities>
+            </complexworld_resource>
+        </models>
+
+        <resources>
+            <complexworld_setup>
+                <setup>
+                    <module>Dv_Complexworld</module>
+                    <class>Dv_Complexworld_Model_Resource_Setup</class>
+                </setup>
+            </complexworld_setup>
+        </resources>
+    </global>
+</config>

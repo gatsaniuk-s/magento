@@ -1,0 +1,20 @@
+<config>
+    <modules>
+        <Dv_Configviewer>
+            <version>0.1.0</version>
+        </Dv_Configviewer>
+    </modules>
+    <global>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <Dv_configviewer_model_observer>
+                        <type>singleton</type>
+                        <class>Dv_Configviewer_Model_Observer</class>
+                        <method>checkForConfigRequest</method>
+                    </Dv_configviewer_model_observer>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+</config>

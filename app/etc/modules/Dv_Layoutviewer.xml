@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Dv_Layoutviewer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Dv_Layoutviewer>
+    </modules>
+</config>

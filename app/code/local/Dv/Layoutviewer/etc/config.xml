@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>	
+	<modules>
+	<Dv_Layoutviewer>
+		<version>0.1.0</version>
+	</Dv_Layoutviewer></modules>
+
+	<global>
+		<models>
+			<dv_layoutviewer>
+				<class>Dv_Layoutviewer_Model</class>
+			</dv_layoutviewer>
+			
+			<core>
+				<rewrite>
+					<layout_update>Dv_Layoutviewer_Model_Layout_Update</layout_update>
+				</rewrite>
+			</core>
+			
+		</models>
+	
+		<events>
+			<controller_action_postdispatch>
+				<observers>
+					<dv_layoutviewer_model_observer>
+						<type>singleton</type>
+						<class>Dv_Layoutviewer_Model_Observer</class>
+						<method>checkForLayoutDisplayRequest</method>
+					</dv_layoutviewer_model_observer>
+				</observers>
+			</controller_action_postdispatch>
+		</events>
+	</global>
+</config>

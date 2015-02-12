@@ -1,8 +1,8 @@
 <layout version="0.1.0">
-    <default>
-        <block type="page/html" name="root" output="toHtml" template="dv/helloworld/simple_page.phtml">
-        </block>
-    </default>
+    <!--<default>-->
+        <!--<block type="page/html" name="root" output="toHtml" template="dv/helloworld/simple_page.phtml">-->
+        <!--</block>-->
+    <!--</default>-->
 
     <helloworld_index_index>
         <reference name="root">
