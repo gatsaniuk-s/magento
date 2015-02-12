@@ -1,0 +1,20 @@
+<layout version="0.1.0">
+    <default>
+        <block type="page/html" name="root" output="toHtml" template="dv/helloworld/simple_page.phtml">
+        </block>
+    </default>
+
+    <helloworld_index_index>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>dv/helloworld/simple_page.phtml</template>
+            </action>
+            <block type="page/template_links" name="top.links"/>
+            <block type="customer/form_register" name="customer_form_register" template="customer/form/register.phtml"/>
+        </reference>
+    </helloworld_index_index>
+
+    <helloworld_index_goodbye>
+        <update handle="helloworld_index_index" />
+    </helloworld_index_goodbye>
+</layout>
