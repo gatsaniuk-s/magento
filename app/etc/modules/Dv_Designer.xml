@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Dv_Designer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Dv_Designer>
+    </modules>
+</config>

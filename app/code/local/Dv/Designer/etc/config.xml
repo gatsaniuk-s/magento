@@ -1,0 +1,166 @@
+<config>
+    <modules>
+        <Dv_Designer>
+            <!--
+            This is the version number that our module is currently at. In
+            order for setup scripts to run, their version number must be less
+            than or equal to this value.
+
+            As we add upgrade scripts, we increment this value. The next time
+            your Magento instance is accessed, Magento will compare values in
+            the DB table 'core_resource' against this value. If the DB is
+            lower, it will attempt to run any setup scripts for the module
+            and then update the database table to match this value.
+            -->
+            <version>0.0.2</version>
+        </Dv_Designer>
+    </modules>
+
+    <global>
+        <!--
+       add an adminhtml block definition
+       -->
+        <blocks>
+            <!--<dv_designer_adminhtml>-->
+                <!--<class>Dv_Designer_Block_Adminhtml</class>-->
+            <!--</dv_designer_adminhtml>-->
+
+            <dv_designer>
+                <class>Dv_Designer_Block</class>
+            </dv_designer>
+        </blocks>
+
+        <!--
+        Add a helper definition for use in adminhtml.xml menu translation.
+        -->
+        <helpers>
+            <dv_designer>
+                <class>Dv_Designer_Helper</class>
+            </dv_designer>
+        </helpers>
+
+        <models>
+            <!--
+            This is the Model alias referred to in install-0.0.1.php.
+            -->
+            <dv_designer>
+                <class>Dv_Designer_Model</class>
+                <!--
+                This tells Magento where to find
+                resource materials for this module.
+                -->
+                <resourceModel>dv_designer_resource</resourceModel>
+
+            </dv_designer>
+
+            <!--
+            This alias must match the above <resourceModel/> value.
+            -->
+            <dv_designer_resource>
+
+                <class>Dv_Designer_Model_Resource</class>
+
+                <entities>
+
+                    <!--
+                    This is the table alias referred to in install-0.0.1.php.
+                    -->
+                    <designer>
+
+                        <!--
+                        This is the actual name of the database table.
+                        -->
+                        <table>dv_designer</table>
+
+                    </designer>
+
+                </entities>
+
+            </dv_designer_resource>
+
+        </models>
+
+        <resources>
+
+            <!--
+            This must match our folder name in the module sql folder.
+            -->
+            <dv_designer_setup>
+
+                <setup>
+
+                    <!--
+                    This defines which module the setup
+                    scripts in this location belong to.
+                    -->
+                    <module>Dv_Designer</module>
+
+                    <!--
+                    In each setup script, this
+                    value determines the class of $this.
+                    -->
+                    <class>Mage_Core_Model_Resource_Setup</class>
+
+                </setup>
+
+                <!--
+                This is only relevant if you have multiple database connections.
+                -->
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+
+            </dv_designer_setup>
+
+        </resources>
+
+    </global>
+
+    <!-- Add a router for access to our admin panel controller. -->
+    <admin>
+        <routers>
+
+            <!-- This is the alias for this router. -->
+            <dv_designer>
+
+                <!--
+                This basically informs Magento to use the
+                admin scope for requests to this router.
+                -->
+                <use>admin</use>
+
+                <args>
+                    <!--
+                    This tells Magento where to find
+                    adminhtml controllers for this module.
+                    -->
+                    <module>Dv_Designer</module>
+
+                    <!-- This is the term used in the actual URL. -->
+                    <frontName>dv_designer</frontName>
+                </args>
+
+            </dv_designer>
+
+        </routers>
+    </admin>
+
+    <frontend>
+        <layout>
+            <updates>
+                <dv_designer>
+                    <file>dv/designer.xml</file>
+                </dv_designer>
+            </updates>
+        </layout>
+        <routers>
+            <dv_designer>
+                <use>standard</use>
+                <args>
+                    <module>Dv_Designer</module>
+                    <frontName>designer</frontName>
+                </args>
+            </dv_designer>
+        </routers>
+    </frontend>
+</config>
