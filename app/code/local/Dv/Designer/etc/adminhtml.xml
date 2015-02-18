@@ -1,45 +1,29 @@
 <config>
-    <!-- We are defining a new menu item for the admin panel. -->
     <menu>
-
-        <!--
-        First, create a top-level menu item, which will appear alongside CMS
-        -->
         <dv_designer translate="title" module="dv_designer">
-            <title>Designer Directory</title>
+            <title>Designers</title>
             <sort_order>75</sort_order>
-            <depends>
-                <module>Dv_Designer</module>
-            </depends>
-
-            <!-- Under this top-level menu, create a child menu item. -->
             <children>
-                <designer translate="title" module="dv_designer">
+                <manage translate="title" module="dv_designer">
                     <title>Manage Designers</title>
                     <sort_order>10</sort_order>
-
-                    <!--
-                    When the menu is clicked, take the user here.
-                    -->
                     <action>dv_designer/adminhtml_designer</action>
-
-                </designer>
+                </manage>
             </children>
         </dv_designer>
     </menu>
 
-    <!-- Define ACL for access to these menu items. -->
     <acl>
         <resources>
             <admin>
                 <children>
                     <dv_designer translate="title" module="dv_designer">
-                        <title>Designer Directory</title>
+                        <title>Designers</title>
                         <sort_order>75</sort_order>
                         <children>
-                            <designer translate="title" module="dv_designer">
+                            <manage translate="title" module="dv_designer">
                                 <title>Manage Designers</title>
-                            </designer>
+                            </manage>
                         </children>
                     </dv_designer>
                 </children>

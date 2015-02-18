@@ -1,5 +1,10 @@
-<?php $designer = $this->getDesigner(); ?>
-<?php if ($designer): ?>
+<?php
+    /**
+     * @var Dv_Designer_Block_Catalog_Product_View_Link $this
+     * @var Dv_Designer_Model_Designer $designer
+     */
+?>
+<?php if ($designer = $this->getDesigner()): ?>
     <h3><?php echo $this->__('Designer'); ?></h3>
-    <p><a href="<?php echo $this->helper('dv_designer/designer')->getDesignerUrl($designer); ?>" title="<?php echo $this->escapeHtml($designer->getName()); ?>"><?php echo $designer->getName(); ?></a></p>
+    <p><a href="<?php echo $designer->getDesignerUrl(); ?>" title="<?php echo $this->escapeHtml($designer->getName()); ?>"><?php echo $this->escapeHtml($designer->getName()); ?></a></p>
 <?php endif; ?>

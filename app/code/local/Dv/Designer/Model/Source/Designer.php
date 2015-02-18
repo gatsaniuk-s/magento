@@ -4,14 +4,15 @@ class Dv_Designer_Model_Source_Designer extends Mage_Eav_Model_Entity_Attribute_
 {
     public function getAllOptions()
     {
-        $designerCollection = Mage::getModel('dv_designer/designer')->getCollection()
-            ->setOrder('name', Varien_Db_Select::SQL_ASC);
+        $designerCollection = Mage::getModel('dv_designer/designer')->getCollection();
+        $designerCollection->setOrder('name', Varien_Db_Select::SQL_ASC);
         $options = array(
             array(
                 'label' => '',
                 'value' => '',
             ),
         );
+        /** @var Dv_Designer_Model_Designer $_designer */
         foreach ($designerCollection as $_designer) {
             $options[] = array(
                 'label' => $_designer->getName(),

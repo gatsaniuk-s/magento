@@ -1,14 +1,10 @@
 <?php
+
 class Dv_Designer_Block_Adminhtml_Designer_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
     protected function _prepareCollection()
     {
-        /**
-         * Tell Magento which collection to use to display in the grid.
-         */
-        $collection = Mage::getResourceModel(
-            'dv_designer/designer_collection'
-        );
+        $collection = Mage::getModel('dv_designer/designer')->getCollection();
         $this->setCollection($collection);
 
         return parent::_prepareCollection();
@@ -16,11 +12,6 @@ class Dv_Designer_Block_Adminhtml_Designer_Grid extends Mage_Adminhtml_Block_Wid
 
     public function getRowUrl($row)
     {
-        /**
-         * When a grid row is clicked, this is where the user should
-         * be redirected to - in our example, the method editAction of
-         * DesignerController.php in designer module.
-         */
         return $this->getUrl(
             'dv_designer/adminhtml_designer/edit',
             array(
@@ -31,9 +22,6 @@ class Dv_Designer_Block_Adminhtml_Designer_Grid extends Mage_Adminhtml_Block_Wid
 
     protected function _prepareColumns()
     {
-        /**
-         * Here, we'll define which columns to display in the grid.
-         */
         $this->addColumn('entity_id', array(
             'header' => $this->_getHelper()->__('ID'),
             'type' => 'number',
@@ -64,19 +52,15 @@ class Dv_Designer_Block_Adminhtml_Designer_Grid extends Mage_Adminhtml_Block_Wid
             'index' => 'url_key',
         ));
 
-        $designerSingleton = Mage::getSingleton(
-            'dv_designer/designer'
-        );
+        /** @var Dv_Designer_Model_Designer $designerSingleton */
+        $designerSingleton = Mage::getSingleton('dv_designer/designer');
         $this->addColumn('visibility', array(
             'header' => $this->_getHelper()->__('Visibility'),
             'type' => 'options',
             'index' => 'visibility',
-            'options' => $designerSingleton->getAvailableVisibilies()
+            'options' => $designerSingleton->getAvailableVisibilities()
         ));
 
-        /**
-         * Finally, we'll add an action column with an edit link.
-         */
         $this->addColumn('action', array(
             'header' => $this->_getHelper()->__('Action'),
             'width' => '50px',

@@ -1,15 +1,21 @@
-<?php $designer = $this->getCurrentDesigner(); ?>
-<?php if ($designer): ?>
+<?php
+    /**
+     * @var Dv_Designer_Block_View $this
+     * @var Dv_Designer_Model_Designer $designer
+     */
+?>
+<?php if ($designer = $this->getCurrentDesigner()): ?>
     <h1><?php echo $designer->getName(); ?></h1>
-    <p><a href="<?php echo $this->helper('dv_designer/designer')->getDesignerUrl($designer); ?>" title="<?php echo $this->escapeHtml($designer->getName()); ?>"><?php echo $designer->getName(); ?></a></p>
+    <p><a href="<?php echo $designer->getDesignerUrl(); ?>" title="<?php echo $this->escapeHtml($designer->getName()); ?>"><?php echo $this->escapeHtml($designer->getName()); ?></a></p>
     <?php echo $designer->getDescription(); ?>
-    <p><a href="<?php echo $this->getUrl('dv_designer/index/index') ?>" title="<?php echo $this->__('Back to Designer Directory'); ?>"><?php echo $this->__('&laquo; Back to Designer Directory'); ?></a></p>
+    <p><a href="<?php echo $this->getUrl('designer') ?>" title="<?php echo $this->__('Back to Designers List'); ?>">&laquo; <?php echo $this->__('Back to Designers List'); ?></a></p>
     <?php $productCollection = $this->getProductCollection(); ?>
-    <?php if ($productCollection->count() > 0): ?>
-        <h2>Products</h2>
+    <?php if ($productCollection->count()): ?>
+        <h2><?php echo $this->__('Products'); ?></h2>
         <ul>
+            <?php /** @var Mage_Catalog_Model_Product $_product */ ?>
             <?php foreach ($productCollection as $_product): ?>
-                <li><a href="<?php echo $this->getUrl('catalog/product/view', array('id' => $_product->getId())); ?>" title="<?php echo $this->escapeHtml($_product->getName()); ?>"><?php echo $_product->getName(); ?></a></li>
+                <li><a href="<?php echo $_product->getProductUrl(); ?>" title="<?php echo $this->escapeHtml($_product->getName()); ?>"><?php echo $this->escapeHtml($_product->getName()); ?></a></li>
             <?php endforeach; ?>
         </ul>
     <?php endif; ?>

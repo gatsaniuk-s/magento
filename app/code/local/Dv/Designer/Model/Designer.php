@@ -1,78 +1,69 @@
 <?php
 
+/**
+ * Class Dv_Designer_Model_Designer
+ *
+ * @method string getName()
+ * @method Dv_Designer_Model_Designer setName(string $name)
+ * @method string getUrlKey()
+ * @method Dv_Designer_Model_Designer setUrlKey(string $urlKey)
+ * @method string getDescription()
+ * @method Dv_Designer_Model_Designer setDescription(string $description)
+ * @method datetime getUpdatedAt()
+ * @method Dv_Designer_Model_Designer setUpdatedAt(datetime $updateAt)
+ */
 class Dv_Designer_Model_Designer extends Mage_Core_Model_Abstract
 {
-    const VISIBILITY_HIDDEN    = '0';
-    const VISIBILITY_DIRECTORY = '1';
+    const VISIBILITY_HIDDEN  = '0';
+    const VISIBILITY_VISIBLE = '1';
 
     protected function _construct()
     {
-        /**
-         * This tells Magento where the related resource model can be found.
-         *
-         * For a resource model, Magento will use the standard model alias -
-         * in this case 'dv_designer' - and look in
-         * config.xml for a child node <resourceModel/>. This will be the
-         * location that Magento will look for a model when
-         * Mage::getResourceModel() is called - in our case,
-         * Dv_Designer_Model_Resource.
-         */
         $this->_init('dv_designer/designer');
     }
 
     /**
-     * This method is used in the grid and form for populating the dropdown.
+     * @return array
      */
-    public function getAvailableVisibilies()
+    public function getAvailableVisibilities()
     {
         return array(
-            self::VISIBILITY_HIDDEN => Mage::helper('dv_designer')
-                ->__('Hidden'),
-            self::VISIBILITY_DIRECTORY => Mage::helper('dv_designer')
-                ->__('Visible in Directory'),
+            self::VISIBILITY_HIDDEN  => Mage::helper('dv_designer')->__('Hidden'),
+            self::VISIBILITY_VISIBLE => Mage::helper('dv_designer')->__('Visible'),
         );
     }
 
+    /**
+     * @return $this
+     */
     protected function _beforeSave()
     {
         parent::_beforeSave();
-
-        /**
-         * Perform some actions just before a designer is saved.
-         */
-        $this->_updateTimestamps();
         $this->_prepareUrlKey();
-
+        $this->setUpdatedAt(Varien_Date::now());
         return $this;
     }
 
-    protected function _updateTimestamps()
-    {
-        $timestamp = now();
-
-        /**
-         * Set the last updated timestamp.
-         */
-        $this->setUpdatedAt($timestamp);
-
-        /**
-         * If we have a designer new object, set the created timestamp.
-         */
-        if ($this->isObjectNew()) {
-            $this->setCreatedAt($timestamp);
-        }
-
-        return $this;
-    }
-
+    /**
+     * @return $this
+     */
     protected function _prepareUrlKey()
     {
-        /**
-         * In this method, you might consider ensuring
-         * that the URL Key entered is unique and
-         * contains only alphanumeric characters.
-         */
+        $name = trim(strtolower($this->getName()));
+
+        $urlKey = preg_replace('/\s+/', '-', $name);
+        $urlKey = preg_replace('/[^a-z0-9 -]/i', '', $urlKey);
+
+        $this->setUrlKey($urlKey);
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDesignerUrl()
+    {
+        return  Mage::getUrl('designer/' . $this->getUrlKey());
     }
 }

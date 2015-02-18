@@ -1,18 +1,18 @@
 <?php /* @var Dv_Designer_Block_List $this */ ?>
-<h1><?php echo $this->__('Designer Directory Example'); ?></h1>
+<h1><?php echo $this->__('Designers'); ?></h1>
 <?php if ($designers = $this->getDesigners()): ?>
     <ul>
         <?php /** @var Dv_Designer_Model_Designer $designer */ ?>
         <?php foreach ($designers as $designer): ?>
             <li>
-                <a href="<?php echo $this->helper('dv_designer/designer')->getDesignerUrl($designer); ?>"
+                <a href="<?php echo $designer->getDesignerUrl(); ?>"
                    title="<?php echo $this->escapeHtml($designer->getName()); ?>"
                 >
-                    <?php echo $designer->getName(); ?>
+                    <?php echo $this->escapeHtml($designer->getName()); ?>
                 </a>
             </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
-    <?php echo $this->__('There are no designers to display at this time.'); ?>
+    <p><?php echo $this->__('There are no designers to display at this time.'); ?></p>
 <?php endif; ?>
