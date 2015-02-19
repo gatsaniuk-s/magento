@@ -108,9 +108,8 @@ class Uni_Fileuploader_Block_Adminhtml_Fileuploader_Edit_Tab_Productfile extends
     public function getGridUrl() {
         return $this->getUrl('fileuploader/adminhtml_fileuploader/filegrid', array('_current' => true));
     }
-    public function getRowUrl() {
+    public function getRowUrl($item = null) {
         return '#';
     }
 
 }
-?>

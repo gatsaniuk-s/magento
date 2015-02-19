@@ -83,7 +83,7 @@ class Uni_Fileuploader_Block_Adminhtml_Fileuploader_Edit_Tab_Products extends Ma
                 parent::_addColumnFilterToCollection($column);
             }
         }
-        return $this;;
+        return $this;
     }
 
     protected function _prepareColumns() {
@@ -218,7 +218,7 @@ class Uni_Fileuploader_Block_Adminhtml_Fileuploader_Edit_Tab_Products extends Ma
         return parent::_prepareColumns();
     }
 
-    public function getRowUrl() {
+    public function getRowUrl($item = null) {
         return '#';
     }
 
@@ -240,5 +240,3 @@ class Uni_Fileuploader_Block_Adminhtml_Fileuploader_Edit_Tab_Products extends Ma
     }
 
 }
-
-?>
